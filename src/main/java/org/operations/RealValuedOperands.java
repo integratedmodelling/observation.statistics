@@ -11,12 +11,14 @@ public class RealValuedOperands {
 
         if(signed){
             ret = (referenceValue - otherValue);
+            if (relative){
+                ret /= referenceValue;
+            }
         } else{
             ret = abs(referenceValue - otherValue);
-        }
-
-        if (relative){
-            ret /= referenceValue;
+            if (relative){
+                ret /= abs(referenceValue);
+            }
         }
 
         return ret;
