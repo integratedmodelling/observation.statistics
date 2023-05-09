@@ -48,12 +48,12 @@ public class Convolution {
                     int k = 0;
                     double mean = 0;
                     for( int kr = -radius; kr <= radius; kr++) {
-                        for( int kc = -radius; kc <= radius; kc++, k++ ) {
+                        for( int kc = -radius; kc <= radius; kc++ ) {
                             double value = inputIter.getSampleDouble(c + kc, r + kr, 0);
                             if (HMConstants.isNovalue(value, nv)) {
                                 value = 0;
                             }
-                            mean += kernelData[k] * value;
+                            mean += kernelData[k++] * value;
                         }
                     }
                     outIter.setSample(c, r, 0, mean);
@@ -97,12 +97,12 @@ public class Convolution {
                     int k = 0;
                     double variance = 0;
                     for( int kr = -radius; kr <= radius; kr++) {
-                        for( int kc = -radius; kc <= radius; kc++, k++ ) {
+                        for( int kc = -radius; kc <= radius; kc++) {
                             double value = inputIter.getSampleDouble(c + kc, r + kr, 0);
                             if (HMConstants.isNovalue(value, nv)) {
                                 value = meanValue;
                             }
-                            variance += kernelData[k] * pow((value-meanValue),2);
+                            variance += kernelData[k++] * pow((value-meanValue),2);
                         }
                     }
                     outIter.setSample(c, r, 0, variance);
@@ -150,14 +150,14 @@ public class Convolution {
                     int k = 0;
                     double covariance = 0;
                     for( int kr = -radius; kr <= radius; kr++) {
-                        for( int kc = -radius; kc <= radius; kc++, k++ ) {
+                        for( int kc = -radius; kc <= radius; kc++) {
                             double value1 = inputIter1.getSampleDouble(c + kc, r + kr, 0);
                             double value2 = inputIter2.getSampleDouble(c + kc, r + kr, 0);
                             if (HMConstants.isNovalue(value1, nv1) || HMConstants.isNovalue(value2, nv2)) {
                                 value1 = meanValue1;
                                 value2 = meanValue2;
                             }
-                            covariance += kernelData[k] * (value1-meanValue1) * (value2-meanValue2);
+                            covariance += kernelData[k++] * (value1-meanValue1) * (value2-meanValue2);
                         }
                     }
                     outIter.setSample(c, r, 0, covariance);
