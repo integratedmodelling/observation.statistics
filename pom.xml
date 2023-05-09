@@ -13,5 +13,17 @@
         <maven.compiler.target>16</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-    
+
+    <dependencies>
+
+        <!-- https://mvnrepository.com/artifact/org.hortonmachine/hortonmachine -->
+        <dependency>
+            <groupId>org.hortonmachine</groupId>
+            <artifactId>hortonmachine</artifactId>
+            <version>0.10.7</version>
+            <type>pom</type>
+        </dependency>
+
+    </dependencies>
+
 </project>
